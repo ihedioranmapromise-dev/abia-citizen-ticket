@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { CATEGORIES } from "@/lib/store";
 
+type Category = (typeof CATEGORIES)[number];
+
 export default function ReportPage() {
-  const [category, setCategory] = useState(CATEGORIES[0]);
+  const [category, setCategory] = useState<Category>(CATEGORIES[0]);
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
@@ -78,7 +80,7 @@ export default function ReportPage() {
             id="category"
             className="input"
             value={category}
-            onChange={(e) => setCategory(e.target.value as typeof CATEGORIES[number])}
+            onChange={(e) => setCategory(e.target.value as Category)}
           >
             {CATEGORIES.map((c) => (
               <option key={c} value={c}>
